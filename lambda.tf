@@ -31,11 +31,11 @@ resource "aws_iam_role_policy_attachment" "attach_ec2_lambda" {
 resource "aws_lambda_function" "main" {
   filename      = "${path.module}/status_check_reboot.zip"
   function_name = var.function_name
-  role          = "arn:aws:iam::189355492841:role/iam_status_check_lambda"#aws_iam_role.iam_for_lambda.arn
+  role          = "arn:aws:iam::189355492841:role/iam_status_check_lambda" #aws_iam_role.iam_for_lambda.arn
   handler       = "lambda_function.lambda_handler"
-  runtime = "python3.9"
-  timeout = 900
- 
+  runtime       = "python3.9"
+  timeout       = 900
+
 }
 
 resource "aws_lambda_permission" "allow_cloudwatch" {

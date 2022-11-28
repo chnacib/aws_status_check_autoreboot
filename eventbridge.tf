@@ -1,10 +1,10 @@
 resource "aws_cloudwatch_event_rule" "scheduler" {
-  name        = "${var.function_name}-scheduler"
-  description = "Status check lambda function scheduler"
+  name                = "${var.function_name}-scheduler"
+  description         = "Status check lambda function scheduler"
   schedule_expression = "rate(1 minute)"
 }
 
 resource "aws_cloudwatch_event_target" "lambda_target" {
-  rule      = aws_cloudwatch_event_rule.scheduler.name
-  arn       = aws_lambda_function.main.arn
+  rule = aws_cloudwatch_event_rule.scheduler.name
+  arn  = aws_lambda_function.main.arn
 }
