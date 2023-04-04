@@ -8,3 +8,15 @@ variable "function_name" {
   description = "Function name"
 
 }
+
+variable "role_arn" {
+  type        = string
+  description = "Lambda IAM Role ARN"
+
+}
+
+variable "memory_size" {
+  type        = number
+  description = "Lambda memory size"
+
+}

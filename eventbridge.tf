@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_event_rule" "scheduler" {
-  name                = "${var.function_name}-scheduler"
+  name                = "${var.function_name}-${var.region}-scheduler"
   description         = "Status check lambda function scheduler"
   schedule_expression = "rate(1 minute)"
 }

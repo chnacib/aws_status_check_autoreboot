@@ -31,12 +31,22 @@ cd aws_status_check_autoreboot/module
 
 Edit ``terrafile.tf`` and replace variables in module
 ```
-module "status_check_reboot" {
-    source = "../"
-    function_name = "status_check_reboot"
-    region = "sa-east-1"
+module "role" {
+  source    = "../role"
+  role_name = "lambda_status_check_role"
+}
+
+module "status_check_reboot_region1" {
+  source        = "../"
+  function_name = "status_check_reboot"
+  region        = "sa-east-1"
+  role_arn      = module.role.arn
+  memory_size   = 128
 }
 ```
+
+Talvez você precise aumentar o memory_size dependendo da quantidade de instâncias EC2 em sua região, pois a lambda precisará de mais memória. para realizar a rotina
+
 
 Deploy terraform module
 
