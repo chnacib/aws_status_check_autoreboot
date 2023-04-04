@@ -1,6 +1,8 @@
 # aws_status_check_autoreboot
 Uma solução para identificar e reiniciar instâncias EC2 com erro de status check utilizando AWS Lambda e EventBridge
 
+Você pode conferir o código fonte [aqui](https://github.com/chnacib/status_check_reboot_lambda): 
+
 ## Como funciona
 
 Essa solução utiliza uma rule scheduled do EventBridge, que a cada 1 minuto, invoca uma função Lambda com python para varrer todas as instâncias EC2 de uma região, utilizando o método [describe_instances](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_instances) e [describe_instance_status](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_instance_status) para listar e identificar se passaram nos testes de acessibilidade e sistema. Caso algum dos testes falhe e a instância fique com status check 1/2 ou 0/2, o programa irá pausar a instância, aguardar até que o status seja "Stopped" e ligar a instância novamente. 
